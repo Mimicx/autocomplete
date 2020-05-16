@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+   
+
+    <v-content>
+      <Autocomplete label="Search address" :accessToken="accessToken" @placechanged="showAddressA"  />
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Autocomplete from './components/map/Autocomplete/Autocomplete';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  data(){
+    return{
+     accessToken: 'pk.eyJ1IjoibWltaWNvY2siLCJhIjoiY2syYTNsZHF2MThvZzNjbzZobngzajJlbiJ9.DNBCdXlAvw7rjIjFtwQxMg', // your access token. Needed if you using Mapbox maps
+    }
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  },
+
+  components: {
+
+    Autocomplete
+  },
+
+  methods:{
+
+    showAddressA(value)
+    {
+        console.log('long ', value[0]);
+         console.log('lat ', value[1]);
+    }
+
+  }
+
+
+};
+</script>
